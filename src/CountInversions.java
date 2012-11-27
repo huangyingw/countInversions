@@ -22,21 +22,21 @@ public class CountInversions {
 	 * This funt merges two sorted arrays and returns inversion count in the
 	 * arrays.
 	 */
-	static int merge(int arr[], int temp[], int left, int mid, int right) {
-		int i, j, k;
+	static int merge(int arr[], int result[], int left, int mid, int right) {
+		int lIndex, rIndex, resultIndex;
 		int inv_count = 0;
 
-		i = left; /* i is index for left subarray */
-		j = mid; /* i is index for right subarray */
-		k = left; /* i is index for resultant merged subarray */
-		while ((i <= mid - 1) && (j <= right)) {
-			if (arr[i] <= arr[j]) {
-				temp[k++] = arr[i++];
+		lIndex = left; /* i is index for left subarray */
+		rIndex = mid; /* i is index for right subarray */
+		resultIndex = left; /* i is index for resultant merged subarray */
+		while ((lIndex <= mid - 1) && (rIndex <= right)) {
+			if (arr[lIndex] <= arr[rIndex]) {
+				result[resultIndex++] = arr[lIndex++];
 			} else {
-				temp[k++] = arr[j++];
+				result[resultIndex++] = arr[rIndex++];
 
 				/* this is tricky -- see above explanation/diagram for merge() */
-				inv_count = inv_count + (mid - i);
+				inv_count = inv_count + (mid - lIndex);
 			}
 		}
 
@@ -44,19 +44,19 @@ public class CountInversions {
 		 * Copy the remaining elements of left subarray (if there are any) to
 		 * temp
 		 */
-		while (i <= mid - 1)
-			temp[k++] = arr[i++];
+		while (lIndex <= mid - 1)
+			result[resultIndex++] = arr[lIndex++];
 
 		/*
 		 * Copy the remaining elements of right subarray (if there are any) to
 		 * temp
 		 */
-		while (j <= right)
-			temp[k++] = arr[j++];
+		while (rIndex <= right)
+			result[resultIndex++] = arr[rIndex++];
 
 		/* Copy back the merged elements to original array */
-		for (i = left; i <= right; i++)
-			arr[i] = temp[i];
+		for (lIndex = left; lIndex <= right; lIndex++)
+			arr[lIndex] = result[lIndex];
 
 		return inv_count;
 	}
