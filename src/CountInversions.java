@@ -50,6 +50,13 @@ public class CountInversions {
 
 	public static void main(String[] args) {
 		int arr[] = { 1, 20, 6, 4, 5 };
+		arr = new int[] { 1, 20, 6, 4, 5 };
+		System.out.print(" Number of inversions are " + mergeSort(arr) + "\n");
+
+		arr = new int[] { 1, 2, 3, 4, 5 };
+		System.out.print(" Number of inversions are " + mergeSort(arr) + "\n");
+
+		arr = new int[] { 1, 4, 3, 2, 5 };
 		System.out.print(" Number of inversions are " + mergeSort(arr) + "\n");
 	}
 }
