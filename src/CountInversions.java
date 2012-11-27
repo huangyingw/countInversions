@@ -1,35 +1,18 @@
 public class CountInversions {
 
-	/*
-	 * This function sorts the input array and returns the number of inversions
-	 * in the array
-	 */
 	static int mergeSort(int arr[]) {
 		int[] temp = new int[arr.length];
 		return _mergeSort(arr, temp, 0, arr.length - 1);
 	}
 
-	/*
-	 * An auxiliary recursive function that sorts the input array and returns
-	 * the number of inversions in the array.
-	 */
 	static int _mergeSort(int arr[], int temp[], int left, int right) {
 		int mid, inv_count = 0;
 		if (right > left) {
-			/*
-			 * Divide the array into two parts and call _mergeSortAndCountInv()
-			 * for each of the parts
-			 */
 			mid = (right + left) / 2;
 
-			/*
-			 * Inversion count will be sum of inversions in left-part,
-			 * right-part and number of inversions in merging
-			 */
 			inv_count = _mergeSort(arr, temp, left, mid);
 			inv_count += _mergeSort(arr, temp, mid + 1, right);
 
-			/* Merge the two parts */
 			inv_count += merge(arr, temp, left, mid + 1, right);
 		}
 		return inv_count;
