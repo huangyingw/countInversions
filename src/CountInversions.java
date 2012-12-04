@@ -30,8 +30,6 @@ public class CountInversions {
 				result[resultIndex++] = arr[lIndex++];
 			} else {
 				result[resultIndex++] = arr[rIndex++];
-
-				/* this is tricky -- see above explanation/diagram for merge() */
 				inv_count = inv_count + (mid - lIndex);
 			}
 		}
